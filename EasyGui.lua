@@ -1,3 +1,4 @@
+require("Gui/helperFunctions")
 local gui={}
 gui.button=require("Gui/button")
 gui.button.checkbox=require("Gui/buttons/checkbox")

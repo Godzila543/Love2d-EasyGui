@@ -7,6 +7,9 @@ button.pos=vector.new(0,0)
 button.size={w=100,h=100,s=5,r=10}
 button.style="round"
 button.disp="simple"
+button.font=nil--here just to keep track that it exists
+button.fontColor={255,255,255}
+button.text=nil--here to say it exists
 
 function button:new(o)
 	o=o or {}
@@ -15,9 +18,11 @@ function button:new(o)
 	return o
 end
 
-function button:draw()
+function button:draw(x, y)
 	local body
 	local outline
+	local x = x or self.pos.x
+	local y = y or self.pos.y
 	if self.state==0 then 
 		body=self.color[1]
 		outline=self.color[2]
@@ -28,37 +33,51 @@ function button:draw()
 		body=self.click[1]
 		outline=self.click[2]
 	end
+
 	if self.disp=="simple" then
 		if self.style=="rect" then
 			love.graphics.setColor(body)
-			love.graphics.rectangle("fill", self.pos.x, self.pos.y, self.size.w, self.size.h)
+			love.graphics.rectangle("fill", x, y, self.size.w, self.size.h)
 			love.graphics.setColor(outline)
 			love.graphics.setLineWidth(self.size.s)
-			love.graphics.rectangle("line", self.pos.x, self.pos.y, self.size.w, self.size.h)
+			love.graphics.rectangle("line", x, y, self.size.w, self.size.h)
 		elseif self.style=="round" then
 			love.graphics.setColor(body)
-			love.graphics.rectangle("fill", self.pos.x, self.pos.y, self.size.w, self.size.h,self.size.r,self.size.r, 20)
+			love.graphics.rectangle("fill", x, y, self.size.w, self.size.h,self.size.r,self.size.r, 20)
 			love.graphics.setColor(outline)
 			love.graphics.setLineWidth(self.size.s)
-			love.graphics.rectangle("line", self.pos.x, self.pos.y, self.size.w, self.size.h,self.size.r,self.size.r, 20)
+			love.graphics.rectangle("line", x, y, self.size.w, self.size.h,self.size.r,self.size.r, 20)
 		elseif self.style=="circle" then
 			love.graphics.setColor(body)
-			love.graphics.circle("fill", self.pos.x, self.pos.y, self.size.w/2, 50)
+			love.graphics.circle("fill", x+self.size.w/2, y+self.size.w/2, self.size.w/2, 50)
 			love.graphics.setColor(outline)
 			love.graphics.setLineWidth(self.size.s)
-			love.graphics.circle("line", self.pos.x, self.pos.y, self.size.w/2, 50)
+			love.graphics.circle("line", x+self.size.w/2, y+self.size.w/2, self.size.w/2, 50)
 		end
 	elseif self.disp=="img" then
 		love.graphics.setColor(255, 255, 255)
 		if self.state==0 then 
-			drawinrect(self.color, self.pos.x, self.pos.y, self.size.w, self.size.h or self.size.w)
+			drawinrect(self.color, x, y, self.size.w, self.size.h or self.size.w)
 		elseif self.state==1 then
-			drawinrect(self.hover, self.pos.x, self.pos.y, self.size.w, self.size.h or self.size.w)
+			drawinrect(self.hover, x, y, self.size.w, self.size.h or self.size.w)
 		elseif self.state==2 then
-			drawinrect(self.click, self.pos.x, self.pos.y, self.size.w, self.size.h or self.size.w)
+			drawinrect(self.click, x, y, self.size.w, self.size.h or self.size.w)
 		end
 	end
+	if self.font then
+		self:displayText(x, y)
+	end
+end
 
+function button:dispText(x, y)--rudementary text display. should work for simple things, but if you want to do custom designs use the image display mode. 
+	-- body
+	if type(self.fontColor[1])=="table" then 
+		love.graphics.setColor(self.fontColor[self.state+1])
+	else
+		love.graphics.setColor(self.fontColor)
+	end
+	if self.font then love.graphics.setFont(self.font) end 
+	love.graphics.printf(self.text,x, y+self.size.h/2-7, self.size.w,"center")
 end
 
 function button:action()
@@ -79,7 +98,7 @@ function button:update()
 		end
 	
 	elseif self.style=="circle" then --collision for circle
-		if (x-self.pos.x)^2+(y-self.pos.y)^2<=(self.size.w/2)^2 then
+		if (x-(self.pos.x+self.size.w/2))^2+(y-(self.pos.Y+self.size.w/2))^2<=(self.size.w/2)^2 then
 			ontop=true
 		end
 	end
