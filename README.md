@@ -7,7 +7,7 @@ check out the Gui Testing folder to see examples of how to use the elements
 
 Important Todo
 
-buttons
+buttons--semi-done
 {
 click type-done
 checkbox-done
