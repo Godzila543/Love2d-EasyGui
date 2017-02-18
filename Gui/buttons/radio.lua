@@ -1,13 +1,5 @@
-local radio={}
+local radio=gui.baseClass:new()
 radio.children={}
-
-
-function radio:new(o)
-	o=o or {}
-	setmetatable(o, self)
-	self.__index = self
-	return o
-end
 
 function radio:insert(button)
 	table.insert(self.children, button)

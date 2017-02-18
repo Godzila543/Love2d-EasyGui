@@ -1,4 +1,4 @@
-local button={}
+local button=gui.baseClass:new()
 button.color={{150,150,150},{25,25,25}}
 button.hover={{150,150,150},{255,255,255}}
 button.click={{50,50,50},{255,140,0}}
@@ -11,12 +11,7 @@ button.font=nil--here just to keep track that it exists
 button.fontColor={255,255,255}
 button.text=nil--here to say it exists
 
-function button:new(o)
-	o=o or {}
-	setmetatable(o, self)
-	self.__index = self
-	return o
-end
+
 
 function button:draw(x, y)
 	local body

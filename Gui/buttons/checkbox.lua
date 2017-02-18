@@ -5,16 +5,6 @@ check.check={{75,75,75},{0,255,0}}
 check.hovto=nil--usefull for if you want to use custom images or if you want a custom color when its checked and you are hovering over the button. it stands for hover+toggle
 check.fontColor={255,255,255}--for different color depending on state use the order |normal, hover, click, checked and normal, checked and hover|
 
-function check:new(o)
-	o=o or {}
-	setmetatable(o, self)
-	self.__index = self
-	return o
-end
-
-
-
-
 function check:draw(x,y)
 	local x=x or self.pos.x
 	local y=y or self.pos.y

@@ -1,14 +1,7 @@
-local split={}
+local split=gui.baseClass:new()
 split.split=false
 split.smooth=0
 split.pos=vector.new(0,0)
-
-function split:new(o)
-	o=o or {}
-	setmetatable(o, self)
-	self.__index = self
-	return o
-end
 
 function split:insert(button)
 	if self.children then else self.children={} end
