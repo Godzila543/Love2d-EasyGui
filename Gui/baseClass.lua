@@ -1,4 +1,5 @@
 base={}
+base.pos=vector.new(0,0)
 function base:new(o)
 	o=o or {}
 	setmetatable(o, self)
@@ -6,3 +7,5 @@ function base:new(o)
 	return o
 end
 return base
+
+

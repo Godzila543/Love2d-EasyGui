@@ -3,7 +3,6 @@ button.color={{150,150,150},{25,25,25}}
 button.hover={{150,150,150},{255,255,255}}
 button.click={{50,50,50},{255,140,0}}
 button.state=0
-button.pos=vector.new(0,0)
 button.size={w=100,h=100,s=5,r=10}
 button.style="round"
 button.disp="simple"

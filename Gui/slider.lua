@@ -1,5 +1,4 @@
 local slider=gui.baseClass:new()
-slider.pos=vector.new(0,0)
 slider.track={w=300,h=5,color={100,100,100},r=2.5}
 slider.handle={w=100,h=15,color={50,50,50},r=7.5}
 slider.value=0

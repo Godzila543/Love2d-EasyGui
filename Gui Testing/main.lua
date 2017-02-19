@@ -1,4 +1,5 @@
 function love.load()
+	love.keyboard.setKeyRepeat(true)
 	package.path="c:/Users/Colin/Documents/GitHub/Love2d/Modules/?.lua"
 	require("camera")
 	camera.on=false
@@ -35,6 +36,8 @@ function love.load()
 	sliderFill=gui.slider:new({pos=vector.new(300,180),value=1,track={w=300,h=5,color={255,255,255},color2={100,100,100},r=0},handle={w=15,h=30,color={0,0,100},r=7.5},range={0,255}})
 	sliderFill2=gui.slider:new({pos=vector.new(300,210), track={w=300,h=15,color={100,100,100},color2={255,255,255},r=7.5},handle={w=25,h=15,color={50,50,50},r=7.5}})
 	sliderSquare=gui.slider:new({pos=vector.new(300,240),value=1,track={w=300,h=20,color={255,255,255},r=0},handle={w=20,h=20,color={0,0,100},r=0},range={0,255}})
+	textbox=gui.textbox:new({pos={x=300,y=280}})
+	textbox2=gui.textbox:new({pos={x=300,y=320},size={w=250,h=20}, font = love.graphics.newFont(15)})
 end
 function love.draw()
 	if camera.on then camera.transformation() end
@@ -51,9 +54,10 @@ function love.draw()
 	sliderFill:draw()
 	sliderFill2:draw()
 	sliderSquare:draw()
-	print(sliderR:getValue())
 	love.graphics.setColor(sliderR:getValue(), sliderG:getValue(), sliderB:getValue())
 	love.graphics.circle("fill", 650, 120, 20, 20)
+	textbox:draw()
+	textbox2:draw()
 end
 
 function love.update(dt)
@@ -79,15 +83,22 @@ function love.focus(bool)
 end
 
 function love.keypressed( key, unicode )
-	print(key)
+	textbox:keypressed(key)
+	textbox2:keypressed(key)
 end
 
+function love.textinput(t)
+	textbox:textInput(t)
+	textbox2:textInput(t)
+end
 
 function love.keyreleased( key, unicode )
 
 end
 
 function love.mousepressed( x, y, button )
+	textbox:mousepressed(x,y,button)
+	textbox2:mousepressed(x,y,button)
 end
 
 function love.mousereleased( x, y, button )
