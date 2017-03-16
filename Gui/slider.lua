@@ -98,6 +98,6 @@ function slider:update()
 end
 
 function slider:getValue()
-	return math.map(self.value, 0, 1, self.range[1],self.range[2])
+	return math.map(self.value, 0, 1, self.range[2],self.range[1])
 end
 return slider

@@ -7,4 +7,5 @@ gui.button.radio=require("Gui/buttons/radio")
 gui.button.split=require("Gui/buttons/split")
 gui.slider=require("Gui/slider")
 gui.textbox=require("Gui/textbox")
+gui.progressBar=require("Gui/progressBar")
 return gui

@@ -7,7 +7,7 @@ check out the Gui Testing folder for more information. There may be better docum
 
 Important Todo
 
-buttons--basically-done
+buttons--basically done~2/16/17
 {
 click type-done
 checkbox-done
@@ -15,12 +15,16 @@ radio-done
 split-done
 cycle-not super important but will do some time
 }
-slider-done-may add snap points in the future
-text box--WIP
-progress bar
+slider-done-may add snap points in the future~2/18/17
+text box-done~2/19/17
+progress bar-WIP
 list box
 drop down list
 menu
 menu bar
 tool bar
 combo box
+
+
+List that I use to see what I need to do
+https://en.wikipedia.org/wiki/Widget_(GUI)
